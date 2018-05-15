@@ -1,0 +1,17 @@
+* {
+  border-spacing: border-box;
+}
+
+.title {
+  height: 500px;
+  width: 100%;
+}
+
+.thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:div {
+}

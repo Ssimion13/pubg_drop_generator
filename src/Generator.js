@@ -149,7 +149,7 @@ class Generator extends Component{
                     }
                 </div>
                 
-                <PlayerStats id={this.state.id}  id2={this.state.id2} server={this.state.server} team={this.state.team} perspective={this.state.perspective}  />
+                <PlayerStats id1={this.state.id}  id2={this.state.id2} server={this.state.server} team={this.state.team} perspective={this.state.perspective}  />
 
             </div>
         )

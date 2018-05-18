@@ -24,6 +24,17 @@ class PlayerStats extends Component {
         };
         this.getServer = this.getServer.bind(this);
     }
+
+    getUserOne(user, user2){
+        var id1 = this.props.id;
+        var id2 = this.props.id2;
+        if(user === id1){
+            this.getServer(id1);
+        }
+        if(user === id2){
+            this.getServer(id2);
+        }
+    }
     getServer(){
         var config = {
             headers: {
@@ -31,8 +42,6 @@ class PlayerStats extends Component {
                 'Accept': "application/vnd.api+json"
             }
         }
-        
-
         if(this.props.id){
         axios.get(`https://api.playbattlegrounds.com/shards/pc-${this.props.server}/players/${this.props.id}/seasons/division.bro.official.2018-05`,
         config,)
@@ -65,7 +74,7 @@ class PlayerStats extends Component {
     render(props){
         return(
             <div>
-                <Button color="Primary"  size="small" color="secondary"  onClick={this.getServer} > Click to pull data from server </Button>
+                <Button color="Primary"  size="small"  onClick={this.getServer} > Click to pull data from server </Button>
             {this.state.foundData ? 
                 <div>
                     Kills: {this.state.kills}

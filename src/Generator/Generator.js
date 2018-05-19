@@ -42,8 +42,9 @@ class Generator extends Component{
                 'Accept': "application/vnd.api+json"
             }
         }
-       var UserName1 = this.state.UserName;
-        var UserName2 = this.state.UserName2
+        var UserName1 = this.state.UserName;
+        var UserName2 = this.state.UserName2;
+
         if(UserName1 !== undefined){
             this.getUser(config, UserName1);
         }
@@ -64,22 +65,26 @@ class Generator extends Component{
             //var lastMatch = response.data.data[0].relationships.matches.data.slice(0,1)[0];
             //var lastMatchID = lastMatch.id
 
-                newState = {
-                    UserData: response.data.data,
-                    id: response.data.data[0].id,
-                    
-                }
-                if(UserName === this.state.UserName2 && this.state.UserName2 !== null){
-                newState = {
-                    UserData2: response.data.data,
-                    id2: response.data.data[0].id,
-                        
-                }
+            newState = {
+                UserData: response.data.data,
+                id: response.data.data[0].id,
+                
             }
-            console.log(response.data);
-            console.log(response.data.data[0].attributes.name);
-            console.log(response.data.data[0].id)
+            if(UserName === this.state.UserName2 && this.state.UserName2 !== null){
+            newState = {
+                UserData2: response.data.data,
+                id2: response.data.data[0].id,
+                    
+            }
+            }
             this.setState(newState)
+        })
+        .catch(error => {
+            console.log('ERROR', error)
+            var errorReport = JSON.stringify(error);
+            if(errorReport.includes("404")){
+                alert('Please input a valid username! (caps sensitive)');
+            }
         })
     }
 
@@ -112,41 +117,40 @@ class Generator extends Component{
 
                     <DropDownMenu 
                         value={this.state.perspective} 
-                        onChange = {(event, index, value) => this.setState({perspective: value})} >
+                        onChange = {(event, index, value) => this.setState({perspective: value}) } >
                     <MenuItem value="" primaryText="Third Person (TPP)" />
                     <MenuItem value="-fpp" primaryText="First Person (FPP)" />
                     </DropDownMenu>
                     
                 </div>
                 <div>
-                    <input onChange={this.handleChange} name="UserName" />
-                    <button onClick = {this.handleSubmit}> Submit </button>
-
-                    { this.state.visibleUserName !== null ? 
+                { this.state.visibleUserName !== null ? 
                     <div>
                         <h1> Hello, {this.state.visibleUserName} </h1>
                     </div> 
                     : 
                     <div>
-                        <h1> Please input a username! </h1>
+                        <h1> Input Username Here: </h1>
                     </div>
                 
                     }
-                </div>
-                <div>
-                    <input onChange={this.handleChange} name="UserName2" />
-                    <button onClick = {this.handleSubmit}> Submit </button>
+
 
                     { this.state.visibleUserName2 !== null ? 
                     <div>
                         <h1> Hello, {this.state.visibleUserName2} </h1>
                     </div> 
                     : 
-                    <div>
-                        <h1> Please input a username! </h1>
-                    </div>
-                
-                    }
+                    null }        
+                </div>
+                <div>
+                    <input onChange={this.handleChange} name="UserName" />
+                    <br/>
+                    <input onChange={this.handleChange} name="UserName2" />
+                    <br/>
+                    <button onClick = {this.handleSubmit}> Submit </button>
+
+        
                 </div>
                 
                 <PlayerStats id1={this.state.id}  id2={this.state.id2} server={this.state.server} team={this.state.team} perspective={this.state.perspective}  />

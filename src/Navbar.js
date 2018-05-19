@@ -30,7 +30,7 @@ const Logged = (props) => (
         <Link to="/"> To Home </Link>
     </MenuItem> 
     <MenuItem>
-        <Link to="/Generator"> Drop Generator </Link>
+        <Link to="/Generator"> Stats Generator </Link>
     </MenuItem>
     <MenuItem >
         <Link to="/About"> About </Link>

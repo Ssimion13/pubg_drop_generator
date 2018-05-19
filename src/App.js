@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from "./Navbar.js"
 import {Switch, Route} from "react-router-dom";
 import FrontPage from "./FrontPage.js";
-import Generator from "./Generator.js";
+import Generator from "./Generator/Generator.js";
 
 class App extends Component {
   render() {

@@ -3,7 +3,8 @@
 import React, {Component} from "react";
 import Button from 'material-ui/RaisedButton';
 import axios from "axios";
-import PlayerStatsContainer from "./PlayerStatsContainer";
+import PlayerStatsContainer from "./PlayerStatsContainer.js";
+import PlayerComparison from "./PlayerComparison.js"
 
 
 
@@ -46,11 +47,7 @@ class PlayerStats extends Component {
         config,)
 
         .then(response => {
-
-            console.log(`${this.props.team}${this.props.perspective}`)
-
             if(id === this.props.id1){
-                console.log("third");
                 let userOneData = {
                         foundData: true,
                         kills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].kills,
@@ -69,8 +66,6 @@ class PlayerStats extends Component {
             })
             }
             if(id === this.props.id2){
-                console.log("third");
-                
                 let userTwoData = {
                         foundData: true,
                         kills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].kills,
@@ -97,7 +92,6 @@ class PlayerStats extends Component {
 
     render(props){
          var userData = [this.state.userOneData, this.state.userTwoData]
-         console.log(userData);
          var userDataMap = userData.map((x, a) => {
              return <PlayerStatsContainer 
               foundData = {x.foundData}
@@ -118,6 +112,7 @@ class PlayerStats extends Component {
             <div>
                 <Button color="Primary"  size="small"  onClick={() => this.getUser(this.props.id1, this.props.id2)} > Click to pull data from server </Button>
                 {userDataMap}
+                <PlayerComparison userData = {userData} />
             </div>
 
 

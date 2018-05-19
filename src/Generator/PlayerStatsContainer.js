@@ -1,7 +1,6 @@
 import React from "react";
 
 function PlayerStatsContainer(props) {
-    console.log(props);
     return(
         <div>
             { props.foundData ? 
@@ -12,7 +11,7 @@ function PlayerStatsContainer(props) {
                     <br/>
                     Daily Kills: {props.dailyKills}
                     <br/>
-                    Damage Dealt: {props.damageDealt}
+                    Damage Dealt: {Math.round(props.damageDealt)}
                     <br/>
                     Revives: {props.revives}
                     <br/>
@@ -22,7 +21,7 @@ function PlayerStatsContainer(props) {
                     <br/>
                     Losses: {props.losses}
                     <br/>
-                    Top 10s: {props.top10s} out of {props.roundsPlayed}: {props.top10s / props.roundsPlayed * 100} %
+                    Top 10s: {props.top10s} out of {props.roundsPlayed}: {Math.round(props.top10s / props.roundsPlayed) * 100} %
                 </div>
                 : null }
              

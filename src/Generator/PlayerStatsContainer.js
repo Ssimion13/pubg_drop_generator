@@ -22,6 +22,7 @@ function PlayerStatsContainer(props) {
                     Losses: {props.losses}
                     <br/>
                     Top 10s: {props.top10s} out of {props.roundsPlayed}: {Math.round(props.top10s / props.roundsPlayed) * 100} %
+                    <br/>
                 </div>
                 : null }
              

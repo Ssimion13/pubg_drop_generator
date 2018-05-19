@@ -2,23 +2,43 @@ import React from "react";
 
 
 function PlayerComparison(props) {
-    var UserData = props.userData;
     var UserOne = props.userData[0];
     var UserTwo = props.userData[1];
     var ComparisonArray = [];
     for( var property1 in UserOne){
+         console.log(property1)
             if(UserOne[property1] > UserTwo[property1]){
-                ComparisonArray.push([property1, UserOne[property1], "Player 1"])
+                ComparisonArray.push({
+                    key: [property1],
+                    value: UserOne[property1],
+                    "Winner": "Player 1"
+                })
+
             } else if(UserOne[property1] < UserTwo[property1]){
-                ComparisonArray.push([property1, UserTwo[property1], "Player 2"])
+                ComparisonArray.push({
+                    key: [property1],
+                    value: UserTwo[property1],
+                    "Winner": "Player 2"
+                })
             } else {
-                ComparisonArray.push([property1, UserOne[property1], "Tie"])
+                ComparisonArray.push({
+                    key: [property1],
+                    value: UserOne[property1],
+                    "Winner": "Tie"
+                })
             }
         }
-    console.log(ComparisonArray);
+    const mappedComparisonArray = ComparisonArray.map(x => {
+            return(
+                <div key={x + 25}>
+                {x.key} : {x.value} 
+                Winner: {x.Winner}
+                </div>
+            )
+    })
     return(
         <div> 
-
+        {mappedComparisonArray}
               
         </div>
     )

@@ -49,7 +49,6 @@ class PlayerStats extends Component {
         .then(response => {
             if(id === this.props.id1){
                 let userOneData = {
-                        foundData: true,
                         kills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].kills,
                         assists: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].assists,
                         dailyKills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].dailyKills,
@@ -62,12 +61,12 @@ class PlayerStats extends Component {
                         roundsPlayed: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].roundsPlayed
                     }
                 this.setState({
-                 userOneData
+                 userOneData,
+                 foundData: true
             })
             }
             if(id === this.props.id2){
                 let userTwoData = {
-                        foundData: true,
                         kills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].kills,
                         assists: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].assists,
                         dailyKills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].dailyKills,
@@ -80,7 +79,8 @@ class PlayerStats extends Component {
                         roundsPlayed: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].roundsPlayed
                 }
                 this.setState({
-                 userTwoData
+                 userTwoData,
+                 foundData: true
             })
             }
 
@@ -94,7 +94,7 @@ class PlayerStats extends Component {
          var userData = [this.state.userOneData, this.state.userTwoData]
          var userDataMap = userData.map((x, a) => {
              return <PlayerStatsContainer 
-              foundData = {x.foundData}
+              foundData = {this.state.foundData}
               kills = {x.kills}
               assists = {x.assists}
               dailyKills = {x.dailyKills}
@@ -112,6 +112,7 @@ class PlayerStats extends Component {
             <div>
                 <Button color="Primary"  size="small"  onClick={() => this.getUser(this.props.id1, this.props.id2)} > Click to pull data from server </Button>
                 {userDataMap}
+                <br/>
                 <PlayerComparison userData = {userData} />
             </div>
 

@@ -3,6 +3,7 @@ import Navbar from "./Navbar.js"
 import {Switch, Route} from "react-router-dom";
 import FrontPage from "./FrontPage.js";
 import Generator from "./Generator/Generator.js";
+import DropGenerator from "./DropGenerator/DropGenerator.js"
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
       <Navbar />
       <Switch>
         <Route path="/Generator" component={Generator} />
+        <Route path="/DropGenerator" component={DropGenerator} />
         <Route path="/" component={FrontPage} />
       </Switch>
       </div>

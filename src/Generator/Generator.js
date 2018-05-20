@@ -4,7 +4,17 @@ import PlayerStats from "./PlayerStats";
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+const styles = {
+    customWidth: {
+      width: 280,
+      height: 50,
+      fontSize: 22,
+    },
+};
 
+const menuStyles = {
+    backgroundColor: "white"
+}
 
 class Generator extends Component{
     constructor(){
@@ -13,10 +23,10 @@ class Generator extends Component{
             server: "na",
             team: "solo",
             perspective: "",
-            UserData: "",
-            UserName: null,
-            UserName2: null,
-            LastMatchID: "",
+            userData: "",
+            userName: null,
+            userName2: null,
+            // add later? LastMatchID: "",
             visibleUserName: null,
             visibleUserName2: null,
             id: null,
@@ -42,37 +52,37 @@ class Generator extends Component{
                 'Accept': "application/vnd.api+json"
             }
         }
-        var UserName1 = this.state.UserName;
-        var UserName2 = this.state.UserName2;
+        var userName1 = this.state.userName;
+        var userName2 = this.state.userName2;
 
-        if(UserName1 !== undefined){
-            this.getUser(config, UserName1);
+        if(userName1 !== undefined){
+            this.getUser(config, userName1);
         }
-        if( UserName2 !== undefined){
-            this.getUser(config, UserName2);
+        if( userName2 !== undefined){
+            this.getUser(config, userName2);
         }
         this.setState({
-            visibleUserName: UserName1,
-            visibleUserName2: UserName2
+            visibleUserName: userName1,
+            visibleUserName2: userName2
         })
     }
 
-    getUser(config, UserName){
+    getUser(config, userName){
         var newState = {};
-        axios.get(`https://api.playbattlegrounds.com/shards/pc-na/players?filter[playerNames]=${UserName}`,
+        axios.get(`https://api.playbattlegrounds.com/shards/pc-na/players?filter[playerNames]=${userName}`,
         config,)
         .then(response =>{
             //var lastMatch = response.data.data[0].relationships.matches.data.slice(0,1)[0];
             //var lastMatchID = lastMatch.id
 
             newState = {
-                UserData: response.data.data,
+                userData: response.data.data,
                 id: response.data.data[0].id,
                 
             }
-            if(UserName === this.state.UserName2 && this.state.UserName2 !== null){
+            if(userName === this.state.userName2 && this.state.userName2 !== null){
             newState = {
-                UserData2: response.data.data,
+                userData2: response.data.data,
                 id2: response.data.data[0].id,
                     
             }
@@ -93,11 +103,13 @@ class Generator extends Component{
     render(){
 
         return(
-            <div>
+            <div className="mainGeneratorDiv">
                 <div>
                     <DropDownMenu 
                       value={this.state.server} 
-                      onChange = {(event, index, value) => this.setState({server: value})} >
+                      style={styles.customWidth}
+                      labelStyle={menuStyles}
+                      onChange = {(event, index, value) => this.setState({map: value})} >
                         <MenuItem value="na" primaryText="North America" />
                         <MenuItem value="eu" primaryText="Europe" />
                         <MenuItem value="as" primaryText="Asia" />
@@ -108,6 +120,8 @@ class Generator extends Component{
 
                     <DropDownMenu 
                         value={this.state.team} 
+                        style={styles.customWidth}
+                        labelStyle={menuStyles}
                         onChange = {(event, index, value) => this.setState({team: value})} >
                     <MenuItem value="solo" primaryText="Solo" />
                     <MenuItem value="duo" primaryText="Duo" />
@@ -117,39 +131,37 @@ class Generator extends Component{
 
                     <DropDownMenu 
                         value={this.state.perspective} 
+                        style={styles.customWidth}
+                        labelStyle={menuStyles}
                         onChange = {(event, index, value) => this.setState({perspective: value}) } >
                     <MenuItem value="" primaryText="Third Person (TPP)" />
                     <MenuItem value="-fpp" primaryText="First Person (FPP)" />
                     </DropDownMenu>
                     
                 </div>
+
                 <div>
+
+                    <input onChange={this.handleChange} name="userName" />
+                    <br/>
+                    <input onChange={this.handleChange} name="userName2" />
+                    <br/>
+                    <button onClick = {this.handleSubmit}> Submit </button>
+                    <div>
+                </div>
+                <div className="userGreetingDiv">
                 { this.state.visibleUserName !== null ? 
-                    <div>
-                        <h1> Hello, {this.state.visibleUserName} </h1>
+                    <div className="userNameOneGreeting">
+                        <h2> Hello, {this.state.visibleUserName} </h2>
                     </div> 
-                    : 
+                    : null  }
+                { this.state.visibleUserName2 !== null ? 
                     <div>
-                        <h1> Input Username Here: </h1>
-                    </div>
-                
-                    }
-
-
-                    { this.state.visibleUserName2 !== null ? 
-                    <div>
-                        <h1> Hello, {this.state.visibleUserName2} </h1>
+                        <h2>  and {this.state.visibleUserName2} </h2>
                     </div> 
                     : 
                     null }        
                 </div>
-                <div>
-                    <input onChange={this.handleChange} name="UserName" />
-                    <br/>
-                    <input onChange={this.handleChange} name="UserName2" />
-                    <br/>
-                    <button onClick = {this.handleSubmit}> Submit </button>
-
         
                 </div>
                 

@@ -91,6 +91,7 @@ class PlayerStats extends Component {
     }
 
     render(props){
+        var idCounter = 1;
          var userData = [this.state.userOneData, this.state.userTwoData]
          var userDataMap = userData.map((x, a) => {
              return <PlayerStatsContainer 
@@ -105,13 +106,15 @@ class PlayerStats extends Component {
               losses = {x.losses}
               top10s = {x.top10s}
               roundsPlayed = {x.roundsPlayed}
-              key = {a * 5 / 2}
+              key = {idCounter++ + a}
              />
          })
         return(
-            <div>
+            <div className="playerStatsDiv">
                 <Button color="Primary"  size="small"  onClick={() => this.getUser(this.props.id1, this.props.id2)} > Click to pull data from server </Button>
+                <div className="mappedUserDataDiv">
                 {userDataMap}
+                </div>
                 <br/>
                 <PlayerComparison userData = {userData} />
             </div>

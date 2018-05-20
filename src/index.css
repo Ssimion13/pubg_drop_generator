@@ -2,6 +2,10 @@
   border-spacing: border-box;
 }
 
+html {
+  background-color: whitesmoke;
+}
+
 .title {
   height: 500px;
   width: 100%;
@@ -13,5 +17,46 @@
   justify-content: center;
 }
 
-button:div {
+.mainGeneratorDiv {
+
+}
+
+.userGreetingDiv {
+  display: flex;
+  justify-content: center;
+}
+.userNameOneGreeting {
+  padding-right: 10px;
+}
+.playerStatsDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.mappedUserDataDiv {
+  display: flex;
+  justify-content: center;
+}
+.userDataContainerDiv {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 10px;
+}
+
+.comparisonArrayDiv {
+  display: flex;
+}
+
+.comparisonWinnerDiv {
+  width: 50%;
+  text-align: center;
+  
+}
+.comparisonKeyValueDiv {
+  width: 50%;
+  text-transform: capitalize;
+  text-align: center;
+}
+.playerComparisonHeading {
+  text-align: center;
 }

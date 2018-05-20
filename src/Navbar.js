@@ -32,6 +32,9 @@ const Logged = (props) => (
     <MenuItem>
         <Link to="/Generator"> Stats Generator </Link>
     </MenuItem>
+    <MenuItem>
+        <Link to="/DropGenerator"> Drop Generator </Link>
+    </MenuItem>
     <MenuItem >
         <Link to="/About"> About </Link>
     </MenuItem>

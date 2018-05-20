@@ -4,7 +4,7 @@ function PlayerStatsContainer(props) {
     return(
         <div>
             { props.foundData ? 
-                <div>
+                <div className="userDataContainerDiv">
                     Kills: {props.kills}
                     <br/>
                     Assists: {props.assists}
@@ -15,13 +15,13 @@ function PlayerStatsContainer(props) {
                     <br/>
                     Revives: {props.revives}
                     <br/>
-                    Most Kills in One Round: {props.roundMostKills}
+                    Most One Round Kills: {props.roundMostKills}
                     <br/>
                     Wins {props.wins}
                     <br/>
                     Losses: {props.losses}
                     <br/>
-                    Top 10s: {props.top10s} out of {props.roundsPlayed}: {Math.round(props.top10s / props.roundsPlayed) * 100} %
+                    Top 10s: {props.top10s} / {props.roundsPlayed}: {Math.round(props.top10s / props.roundsPlayed) * 100} %
                     <br/>
                 </div>
                 : null }

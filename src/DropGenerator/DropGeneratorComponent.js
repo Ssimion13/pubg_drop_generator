@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react'
 
-
-function DropGeneratorComponent (props){
-    return(
-        <div>
-        </div>
-    )
+function DropGeneratorComponent (props) {
+  return (
+    <div>
+    </div>
+  )
 }
 
-export default  DropGeneratorComponent;
+export default DropGeneratorComponent;

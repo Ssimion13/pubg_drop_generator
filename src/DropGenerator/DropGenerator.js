@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DropDownMenu from 'material-ui/DropDownMenu';
+import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import DropGeneratorComponent from "./DropGeneratorComponent";
 
@@ -9,14 +10,25 @@ class DropGenerator extends Component{
     super();
     this.state = {
         map: "Erangel",
-        planeDirection: "NW-SE",
         team: "solo",
-        dropLocations: ""
+        dropLocations: "",
+        currentDrop: "",
+        sections: "",
+        emptyCellStyle: {},
+        filledCellStyle: "rgb(255,27,11,0.5)"
+
     }
     this.getMapLocations = this.getMapLocations.bind(this);
+    this.activateDropGenerator = this.activateDropGenerator.bind(this);
+    this.addSection = this.addSection.bind(this);
     }
 
+
+
+
+
     getMapLocations(){
+
     if(this.state.map === "Erangel"){
         this.setState({
             dropLocations: ["Severny", "Pochinki", "Military Base", "Ferry Pier", "Mylta", 
@@ -28,7 +40,8 @@ class DropGenerator extends Component{
                                 "Northwest Small Areas", "North Small Areas", "Northeast Small Areas", "East Small Areas",
                                 "Southeast Small Areas", "South Small Areas", "Southwest Small Areas" 
             ]
-        })
+        }, this.activateDropGenerator)
+
     } else if (this.state.map === "Miramar"){
         this.setState({
             dropLocations: ["El Pozo", "La Cobreria", "Ladrillera", "Monte Nuevo",
@@ -40,11 +53,35 @@ class DropGenerator extends Component{
                                 "Power Grid", "Impala", "Eastern Islands", "Ruins", 
                                 "Northwest Small Areas", "North Small Areas", "Northeast Small Areas", "East Small Areas",
                                 "Southeast Small Areas", "South Small Areas", "Southwest Small Areas" ]
+        }, this.activateDropGenerator)
+    }
+    }
+    activateDropGenerator(){
+
+        var arrayLength = this.state.dropLocations.length
+        var randomDrop = Math.floor(Math.random() * arrayLength)
+        var currentDrop = this.state.dropLocations[randomDrop]
+
+        this.setState({
+            currentDrop: currentDrop
         })
     }
+    addSection(direction){
+        var sections = this.state.sections;
+        if(!this.state.sections.includes(direction)){
+            this[direction].style.backgroundColor = this.state.filledCellStyle;
+            sections += direction;
+        } else {
+            sections = sections.replace(direction, "")
+            this[direction].style = this.state.emptyCellStyle
+        }
+        this.setState({
+            sections: sections,
+        })
     }
-    render(){
 
+
+    render(){
         return(
             <div>
                     <DropDownMenu 
@@ -63,20 +100,72 @@ class DropGenerator extends Component{
                     <MenuItem value="squad" primaryText="Squad" />
                     </DropDownMenu>
 
-                    <DropDownMenu 
-                        value={this.state.planeDirection} 
-                        onChange = {(event, index, value) => this.setState({perspective: value}) } >
-                    <MenuItem value="N-S" primaryText="North to South / South to North" />
-                    <MenuItem value="NW-SE" primaryText="Northwest to Southeast / Southeast to Northwest" />
-                    <MenuItem value="W-E" primaryText="West to East / East to West" />
-                    <MenuItem value="SW-NE" primaryText="Southwest to Northeast / Northeast to Southwest" />
-                    </DropDownMenu>
-
                 <DropGeneratorComponent 
                     map={this.state.map} 
                     team = {this.state.team} 
                     planeDirection = {this.state.planeDirection} 
                 />
+
+            <div>
+                <RaisedButton onClick={ this.getMapLocations} > Go! </RaisedButton>
+            {this.state.currentDrop}
+            </div>
+
+            <div className = "map"> 
+                <div className = "cell"                    
+                    style = {this.state.emptyCellStyle} 
+                    ref={ref => this.One = ref} 
+                    onClick={()=> this.addSection('One')} >
+                </div>
+
+                <div className = "cell" 
+                    style = {this.state.emptyCellStyle}
+                    ref={ref => this.Two = ref}
+                    onClick={()=> this.addSection('Two')}>
+                </div>
+
+                <div className = "cell" 
+                    style = {this.state.emptyCellStyle} 
+                    ref={ref => this.Three = ref} 
+                    onClick={()=> this.addSection('Three')}> 
+                </div>
+                <div className = "cell" 
+                    style = {this.state.emptyCellStyle} 
+                    ref={ref => this.Four = ref} 
+                    onClick={()=> this.addSection('Four')}> 
+                </div>
+
+                <div className = "cell" 
+                style = {this.state.emptyCellStyle} 
+                ref={ref => this.Five = ref} 
+                onClick={()=> this.addSection('Five')}>
+                </div>
+
+                <div className = "cell" 
+                style = {this.state.emptyCellStyle} 
+                ref={ref => this.Six = ref} 
+                onClick={()=> this.addSection('Six')}> 
+                </div>
+
+                <div className = "cell" 
+                style = {this.state.emptyCellStyle} 
+                ref={ref => this.Seven = ref} 
+                onClick={()=> this.addSection('Seven')}>
+                </div>
+
+                <div className = "cell" 
+                style = {this.state.emptyCellStyle} 
+                ref={ref => this.Eight = ref} 
+                onClick={()=> this.addSection('Eight')}> 
+                </div>
+
+                <div className = "cell" 
+                style = {this.state.emptyCellStyle} 
+                ref={ref => this.Nine = ref} 
+                onClick={()=> this.addSection('Nine')}> 
+                </div>
+
+            </div>
 
             </div>
         )

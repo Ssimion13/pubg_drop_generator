@@ -60,3 +60,18 @@ html {
 .playerComparisonHeading {
   text-align: center;
 }
+
+.map {
+  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-image: url("./Russia.jpg");
+  background-size: contain;
+}
+
+.cell {
+  flex: 0 0 33%;
+  border: 1px solid whitesmoke;
+}

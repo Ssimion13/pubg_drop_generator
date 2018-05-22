@@ -104,7 +104,7 @@ class Generator extends Component{
 
         return(
             <div className="mainGeneratorDiv">
-                <div>
+                <div className="mainGeneratorDropdownMenusDiv" >
                     <DropDownMenu 
                       value={this.state.server} 
                       style={styles.customWidth}
@@ -141,7 +141,6 @@ class Generator extends Component{
                 </div>
 
                 <div>
-
                     <input onChange={this.handleChange} name="userName" />
                     <br/>
                     <input onChange={this.handleChange} name="userName2" />

@@ -3,6 +3,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 import DropGeneratorComponent from "./DropGeneratorComponent";
+import DropGeneratorHowToUse from "./DropGeneratorHowToUse";
 
 
 
@@ -27,7 +28,7 @@ class DropGenerator extends Component{
     this.getMapLocations = this.getMapLocations.bind(this);
     this.activateDropGenerator = this.activateDropGenerator.bind(this);
     this.addSection = this.addSection.bind(this);
-
+    this.clearSections = this.clearSections.bind(this);
     
     }
 
@@ -36,10 +37,7 @@ class DropGenerator extends Component{
 
 
     getMapLocations(){
-        if(this.state.sections.length === 0){
-            alert("Please click at least region on the map.")
-            return;
-        }
+
         var dropLocations = ""
     if(this.state.map === "Erangel"){
          dropLocations = {
@@ -121,88 +119,101 @@ class DropGenerator extends Component{
         })
     }
 
+    clearSections(){
+        var sections = this.state.sections;
+        for(let i = 0; i < sections.length; i++){
+            this[sections[i]].style.backgroundColor = "";
+        }
+    }
 
     render(){
+        console.log(this.state.sections);
         const currentMap = 'map' + (this.state.map === "Erangel" ? ' Erangel' : ' Miramar')
-
         return(
-            <div>
-                    <DropDownMenu 
-                      value={this.state.map} 
-                      onChange = {(event, index, value) => this.setState({map: value})} >
-                        <MenuItem value="Erangel"  primaryText="Erangel" />
-                        <MenuItem value="Miramar"  primaryText="Miramar" />
-                    </DropDownMenu>
+            <div className="mainDropGeneratorDiv">
+                <DropDownMenu 
+                    value={this.state.map} 
+                    onChange = {(event, index, value) => this.setState({map: value})} >
+                    <MenuItem value="Erangel"  primaryText="Erangel" />
+                    <MenuItem value="Miramar"  primaryText="Miramar" />
+                </DropDownMenu>
+                <div className="dropGeneratorTopButtonsDiv">
+                    <DropGeneratorHowToUse />
+                    <RaisedButton className={'startButton'} label="Clear" onClick={this.clearSections} />
 
-                    {/* <DropDownMenu 
-                        value={this.state.team} 
-                        onChange = {(event, index, value) => this.setState({team: value})}>
-                    <MenuItem value="solo" primaryText="Solo" />
-                    <MenuItem value="duo" primaryText="Duo" />
-                    <MenuItem value="trio" primaryText="3 Man Squad" />
-                    <MenuItem value="squad" primaryText="Squad" />
-                    </DropDownMenu> */}
-            <div className="mapHolderDiv" >
-                <div className={currentMap} > 
-                    <div className = "cell"                    
-                        style = {this.state.emptyCellStyle} 
-                        ref={ref => this.One = ref} 
-                        onClick={()=> this.addSection('One')} >
-                    </div>
-
-                    <div className = "cell" 
-                        style = {this.state.emptyCellStyle}
-                        ref={ref => this.Two = ref}
-                        onClick={()=> this.addSection('Two')}>
-                    </div>
-
-                    <div className = "cell" 
-                        style = {this.state.emptyCellStyle} 
-                        ref={ref => this.Three = ref} 
-                        onClick={()=> this.addSection('Three')}> 
-                    </div>
-                    <div className = "cell" 
-                        style = {this.state.emptyCellStyle} 
-                        ref={ref => this.Four = ref} 
-                        onClick={()=> this.addSection('Four')}> 
-                    </div>
-
-                    <div className = "cell" 
-                    style = {this.state.emptyCellStyle} 
-                    ref={ref => this.Five = ref} 
-                    onClick={()=> this.addSection('Five')}>
-                    </div>
-
-                    <div className = "cell" 
-                    style = {this.state.emptyCellStyle} 
-                    ref={ref => this.Six = ref} 
-                    onClick={()=> this.addSection('Six')}> 
-                    </div>
-
-                    <div className = "cell" 
-                    style = {this.state.emptyCellStyle} 
-                    ref={ref => this.Seven = ref} 
-                    onClick={()=> this.addSection('Seven')}>
-                    </div>
-
-                    <div className = "cell" 
-                    style = {this.state.emptyCellStyle} 
-                    ref={ref => this.Eight = ref} 
-                    onClick={()=> this.addSection('Eight')}> 
-                    </div>
-
-                    <div className = "cell" 
-                    style = {this.state.emptyCellStyle} 
-                    ref={ref => this.Nine = ref} 
-                    onClick={()=> this.addSection('Nine')}> 
-                    </div>
                 </div>
 
-            </div>
-            <div className="dropGeneratorButtonDiv">
-                <RaisedButton color="Primary" onClick={ this.getMapLocations} > Go! </RaisedButton>
-            </div>
-                <DropGeneratorComponent  currentDrop={this.state.currentDrop} currentDrop2={this.state.currentDrop2} />
+                        {/* <DropDownMenu 
+                            value={this.state.team} 
+                            onChange = {(event, index, value) => this.setState({team: value})}>
+                        <MenuItem value="solo" primaryText="Solo" />
+                        <MenuItem value="duo" primaryText="Duo" />
+                        <MenuItem value="trio" primaryText="3 Man Squad" />
+                        <MenuItem value="squad" primaryText="Squad" />
+                        </DropDownMenu> */}
+
+                <div className="mapHolderDiv" >
+                    <div className={currentMap} > 
+                        <div className = "cell"                    
+                            style = {this.state.emptyCellStyle} 
+                            ref={ref => this.One = ref} 
+                            onClick={()=> this.addSection('One')} >
+                        </div>
+
+                        <div className = "cell" 
+                            style = {this.state.emptyCellStyle}
+                            ref={ref => this.Two = ref}
+                            onClick={()=> this.addSection('Two')}>
+                        </div>
+
+                        <div className = "cell" 
+                            style = {this.state.emptyCellStyle} 
+                            ref={ref => this.Three = ref} 
+                            onClick={()=> this.addSection('Three')}> 
+                        </div>
+                        <div className = "cell" 
+                            style = {this.state.emptyCellStyle} 
+                            ref={ref => this.Four = ref} 
+                            onClick={()=> this.addSection('Four')}> 
+                        </div>
+
+                        <div className = "cell" 
+                        style = {this.state.emptyCellStyle} 
+                        ref={ref => this.Five = ref} 
+                        onClick={()=> this.addSection('Five')}>
+                        </div>
+
+                        <div className = "cell" 
+                        style = {this.state.emptyCellStyle} 
+                        ref={ref => this.Six = ref} 
+                        onClick={()=> this.addSection('Six')}> 
+                        </div>
+
+                        <div className = "cell" 
+                        style = {this.state.emptyCellStyle} 
+                        ref={ref => this.Seven = ref} 
+                        onClick={()=> this.addSection('Seven')}>
+                        </div>
+
+                        <div className = "cell" 
+                        style = {this.state.emptyCellStyle} 
+                        ref={ref => this.Eight = ref} 
+                        onClick={()=> this.addSection('Eight')}> 
+                        </div>
+
+                        <div className = "cell" 
+                        style = {this.state.emptyCellStyle} 
+                        ref={ref => this.Nine = ref} 
+                        onClick={()=> this.addSection('Nine')}> 
+                        </div>
+                    </div>
+
+                </div>
+                    <DropGeneratorComponent 
+                        sections={this.state.sections} 
+                        getMapLocations={this.getMapLocations} 
+                        currentDrop={this.state.currentDrop} 
+                        currentDrop2={this.state.currentDrop2} />
 
             </div>
         )

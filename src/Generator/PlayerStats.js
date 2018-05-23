@@ -111,7 +111,9 @@ class PlayerStats extends Component {
          })
         return(
             <div className="playerStatsDiv">
-                <Button color="Primary"  size="small"  onClick={() => this.getUser(this.props.id1, this.props.id2)} > Click to pull data from server </Button>
+                <div>
+                    <Button color="Primary"  size="small"  onClick={() => this.getUser(this.props.id1, this.props.id2)} > Click to pull data from server </Button>
+                </div>
                 <div className="mappedUserDataDiv">
                 {userDataMap}
                 </div>

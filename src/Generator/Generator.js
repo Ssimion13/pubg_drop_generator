@@ -3,6 +3,7 @@ import axios from "axios"
 import PlayerStats from "./PlayerStats";
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const styles = {
     customWidth: {
@@ -20,7 +21,7 @@ class Generator extends Component{
     constructor(){
         super();
         this.state = {
-            server: "na",
+            server: "pc-na",
             team: "solo",
             perspective: "",
             userData: "",
@@ -46,38 +47,38 @@ class Generator extends Component{
 
     handleSubmit(e){
         e.preventDefault();
-        var config = {
-            headers: {
-                'Authorization': "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3NmFmNTY4MC0zYTFhLTAxMzYtMDY2Zi03ZGM0MmNhOWYyNjgiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTI2MzUzNDA3LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InB1YmdlbmVyYXRvciIsInNjb3BlIjoiY29tbXVuaXR5IiwibGltaXQiOjEwfQ.DYfj_yQNBpsvNn-E7sVWQ13ZVn720aeWhXqmkwqJ3Kk",
-                'Accept': "application/vnd.api+json"
-            }
-        }
         var userName1 = this.state.userName;
         var userName2 = this.state.userName2;
 
         if(userName1 !== undefined){
-            this.getUser(config, userName1);
+            this.getUser(userName1);
+            this.setState({
+                visibleUserName: userName1,
+            })
         }
         if( userName2 !== undefined){
-            this.getUser(config, userName2);
+            this.getUser(userName2);
+            this.setState({
+                visibleUserName2: userName2,
+            })
         }
-        this.setState({
-            visibleUserName: userName1,
-            visibleUserName2: userName2
-        })
     }
 
-    getUser(config, userName){
+    getUser(userName){
         var newState = {};
-        axios.get(`https://api.playbattlegrounds.com/shards/pc-na/players?filter[playerNames]=${userName}`,
-        config,)
+        var server = this.state.server;
+        // api?username=${username}
+
+        // yourApiUrl?username=${username}
+
+        axios.get(`/api?username=${userName}?region=${server}`)
         .then(response =>{
             //var lastMatch = response.data.data[0].relationships.matches.data.slice(0,1)[0];
             //var lastMatchID = lastMatch.id
 
             newState = {
-                userData: response.data.data,
-                id: response.data.data[0].id,
+                userData: response,
+                id: response.id,
                 
             }
             if(userName === this.state.userName2 && this.state.userName2 !== null){
@@ -110,12 +111,12 @@ class Generator extends Component{
                       style={styles.customWidth}
                       labelStyle={menuStyles}
                       onChange = {(event, index, value) => this.setState({map: value})} >
-                        <MenuItem value="na" primaryText="North America" />
-                        <MenuItem value="eu" primaryText="Europe" />
-                        <MenuItem value="as" primaryText="Asia" />
-                        <MenuItem value="sa" primaryText="South America" />
-                        <MenuItem value="jp" primaryText="Korea/Japan" />
-                        <MenuItem value="sea" primaryText="South East Asia" /> 
+                        <MenuItem value="pc-na" primaryText="North America" />
+                        <MenuItem value="pc-eu" primaryText="Europe" />
+                        <MenuItem value="pc-as" primaryText="Asia" />
+                        <MenuItem value="pc-sa" primaryText="South America" />
+                        <MenuItem value="pc-jp" primaryText="Korea/Japan" />
+                        <MenuItem value="pc-sea" primaryText="South East Asia" /> 
                     </DropDownMenu>
 
                     <DropDownMenu 
@@ -140,14 +141,21 @@ class Generator extends Component{
                     
                 </div>
 
-                <div>
-                    <input onChange={this.handleChange} name="userName" />
-                    <br/>
-                    <input onChange={this.handleChange} name="userName2" />
-                    <br/>
-                    <button onClick = {this.handleSubmit}> Submit </button>
-                    <div>
-                </div>
+                <div className="generatorInputMainDiv">
+                    <div className="generatorInputDiv">
+                        <div className="generatorInputs">
+                            <input className="generatorInput" placeholder="Input Username" onChange={this.handleChange} name="userName" />
+                            <br/>
+                            <input className="generatorInput"  placeholder="(Optional) Username for Comparison" onChange={this.handleChange} name="userName2" />
+                            <br/>
+                        </div>
+                        <div className="inputButtonDiv">
+                        <RaisedButton   size="large" onClick = {this.handleSubmit}> Submit </RaisedButton>
+                        </div>
+                    </div>
+
+                </div>  
+
                 <div className="userGreetingDiv">
                 { this.state.visibleUserName !== null ? 
                     <div className="userNameOneGreeting">
@@ -162,7 +170,6 @@ class Generator extends Component{
                     null }        
                 </div>
         
-                </div>
                 
                 <PlayerStats id1={this.state.id}  id2={this.state.id2} server={this.state.server} team={this.state.team} perspective={this.state.perspective}  />
 

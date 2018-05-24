@@ -124,6 +124,9 @@ class DropGenerator extends Component{
         for(let i = 0; i < sections.length; i++){
             this[sections[i]].style.backgroundColor = "";
         }
+        this.setState({
+            sections: []
+        })
     }
 
     render(){

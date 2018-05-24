@@ -162,7 +162,10 @@ html {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-
+.playerStatsButtonContainer {
+  display: flex;
+  justify-content: center;
+}
 
 
 

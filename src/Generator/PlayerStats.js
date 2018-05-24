@@ -21,44 +21,31 @@ class PlayerStats extends Component {
     }
 
     getUser(user, user2){
-        var id1 = this.props.id1;
-        var id2 = this.props.id2;
-        console.log(id1);
 
-        if(user === id1){
+        if(user === this.props.id1){
             console.log("first");
-            this.getServer(id1);
+            this.getServer(this.props.id1);
         }
-        if(user2 === id2){
+        if(user2 === this.props.id2){
             console.log("second")
-            this.getServer(id2);
+            this.getServer(this.props.id2);
         }
     }
     getServer(id){
-        console.log(id);
-        var config = {
-            headers: {
-                'Authorization': "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3NmFmNTY4MC0zYTFhLTAxMzYtMDY2Zi03ZGM0MmNhOWYyNjgiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTI2MzUzNDA3LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InB1YmdlbmVyYXRvciIsInNjb3BlIjoiY29tbXVuaXR5IiwibGltaXQiOjEwfQ.DYfj_yQNBpsvNn-E7sVWQ13ZVn720aeWhXqmkwqJ3Kk",
-                'Accept': "application/vnd.api+json"
-            }
-        }
-        if(this.props.id1){
-        axios.get(`https://api.playbattlegrounds.com/shards/pc-${this.props.server}/players/${id}/seasons/division.bro.official.2018-05`,
-        config,)
-
-        .then(response => {
             if(id === this.props.id1){
+                console.log(this.props.userData)
+                console.log("whats good")
                 let userOneData = {
-                        kills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].kills,
-                        assists: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].assists,
-                        dailyKills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].dailyKills,
-                        damageDealt: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].damageDealt,
-                        revives: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].revives,
-                        roundMostKills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].roundMostKills,
-                        wins: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].wins,
-                        losses: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].losses,
-                        top10s: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].top10s,
-                        roundsPlayed: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].roundsPlayed
+                        kills: this.props.userData[`${this.props.team}${this.props.perspective}`].kills,
+                        assists: this.props.userData[`${this.props.team}${this.props.perspective}`].assists,
+                        dailyKills: this.props.userData[`${this.props.team}${this.props.perspective}`].dailyKills,
+                        damageDealt: this.props.userData[`${this.props.team}${this.props.perspective}`].damageDealt,
+                        revives: this.props.userData[`${this.props.team}${this.props.perspective}`].revives,
+                        roundMostKills: this.props.userData[`${this.props.team}${this.props.perspective}`].roundMostKills,
+                        wins: this.props.userData[`${this.props.team}${this.props.perspective}`].wins,
+                        losses: this.props.userData[`${this.props.team}${this.props.perspective}`].losses,
+                        top10s: this.props.userData[`${this.props.team}${this.props.perspective}`].top10s,
+                        roundsPlayed: this.props.userData[`${this.props.team}${this.props.perspective}`].roundsPlayed
                     }
                 this.setState({
                  userOneData,
@@ -66,33 +53,32 @@ class PlayerStats extends Component {
             })
             }
             if(id === this.props.id2){
+                console.log("hello there")
                 let userTwoData = {
-                        kills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].kills,
-                        assists: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].assists,
-                        dailyKills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].dailyKills,
-                        damageDealt: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].damageDealt,
-                        revives: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].revives,
-                        roundMostKills: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].roundMostKills,
-                        wins: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].wins,
-                        losses: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].losses,
-                        top10s: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].top10s,
-                        roundsPlayed: response.data.data.attributes.gameModeStats[`${this.props.team}${this.props.perspective}`].roundsPlayed
+                        kills: this.props.userData2[`${this.props.team}${this.props.perspective}`].kills,
+                        assists: this.props.userData2[`${this.props.team}${this.props.perspective}`].assists,
+                        dailyKills: this.props.userData2[`${this.props.team}${this.props.perspective}`].dailyKills,
+                        damageDealt: this.props.userData2[`${this.props.team}${this.props.perspective}`].damageDealt,
+                        revives: this.props.userData2[`${this.props.team}${this.props.perspective}`].revives,
+                        roundMostKills: this.props.userData2[`${this.props.team}${this.props.perspective}`].roundMostKills,
+                        wins: this.props.userData2[`${this.props.team}${this.props.perspective}`].wins,
+                        losses: this.props.userData2[`${this.props.team}${this.props.perspective}`].losses,
+                        top10s: this.props.userData2[`${this.props.team}${this.props.perspective}`].top10s,
+                        roundsPlayed: this.props.userData2[`${this.props.team}${this.props.perspective}`].roundsPlayed
                 }
                 this.setState({
                  userTwoData,
                  foundData: true
             })
+            } else {
+                alert("Please input a username.");
             }
-
-    })
-    } else {
-        alert("Please input a username.");
-    }
     }
 
     render(props){
         var idCounter = 1;
          var userData = [this.state.userOneData, this.state.userTwoData]
+         console.log(userData);
          var userDataMap = userData.map((x, a) => {
              return <PlayerStatsContainer 
               foundData = {this.state.foundData}
@@ -111,7 +97,7 @@ class PlayerStats extends Component {
          })
         return(
             <div className="playerStatsDiv">
-                <div>
+                <div className="playerStatsButtonContainer">
                     <Button color="Primary"  size="small"  onClick={() => this.getUser(this.props.id1, this.props.id2)} > Click to pull data from server </Button>
                 </div>
                 <div className="mappedUserDataDiv">

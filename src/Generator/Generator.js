@@ -30,7 +30,7 @@ class Generator extends Component{
             // add later? LastMatchID: "",
             visibleUserName: null,
             visibleUserName2: null,
-            id: null,
+            id1: null,
             id2: null
         };
         this.handleChange=this.handleChange.bind(this);
@@ -50,13 +50,13 @@ class Generator extends Component{
         var userName1 = this.state.userName;
         var userName2 = this.state.userName2;
 
-        if(userName1 !== undefined){
+        if(userName1 !== null){
             this.getUser(userName1);
             this.setState({
                 visibleUserName: userName1,
             })
         }
-        if( userName2 !== undefined){
+        if( userName2 !== null){
             this.getUser(userName2);
             this.setState({
                 visibleUserName2: userName2,
@@ -71,24 +71,39 @@ class Generator extends Component{
 
         // yourApiUrl?username=${username}
 
-        axios.get(`/api?username=${userName}?region=${server}`)
+        axios.get(`/api?username=${userName}&server=${server}`)
         .then(response =>{
+            
             //var lastMatch = response.data.data[0].relationships.matches.data.slice(0,1)[0];
             //var lastMatchID = lastMatch.id
 
             newState = {
-                userData: response,
-                id: response.id,
-                
+                userData: response.data,
+                id1: this.state.userName
             }
             if(userName === this.state.userName2 && this.state.userName2 !== null){
             newState = {
-                userData2: response.data.data,
-                id2: response.data.data[0].id,
-                    
+                userData2: response.data,
+                id2: this.state.userName2
             }
             }
             this.setState(newState)
+
+            // newState = {
+            //     userData: response,
+            //     id: response.id,
+                
+            // }
+            // if(userName === this.state.userName2 && this.state.userName2 !== null){
+            // newState = {
+            //     userData2: response.data.data,
+            //     id2: response.data.data[0].id,
+                    
+            // }
+            // }
+            // this.setState(newState)
+
+
         })
         .catch(error => {
             console.log('ERROR', error)
@@ -171,7 +186,7 @@ class Generator extends Component{
                 </div>
         
                 
-                <PlayerStats id1={this.state.id}  id2={this.state.id2} server={this.state.server} team={this.state.team} perspective={this.state.perspective}  />
+                <PlayerStats id1={this.state.id1}  id2={this.state.id2} userData={this.state.userData} userData2={this.state.userData2} server={this.state.server} team={this.state.team} perspective={this.state.perspective}  />
 
             </div>
         )

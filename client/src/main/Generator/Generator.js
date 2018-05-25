@@ -71,7 +71,6 @@ class Generator extends Component{
 
         axios.get(`/api?username=${userName}&server=${server}`)
         .then(response =>{
-
             newState = {
                 userData: response.data,
                 id1: this.state.userName

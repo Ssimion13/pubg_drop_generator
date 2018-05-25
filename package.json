@@ -7,7 +7,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "apubg-sdk": "^0.1.0",
+        "apubg-sdk": "^0.1.1",
         "body-parser": "^1.18.3",
         "dotenv": "^5.0.1",
         "eslint": "^4.19.1",

@@ -9,8 +9,7 @@ apiRoutes.get("/", (req,res) => {
     // Should be something like req.params or something similiar
     // process.env.region = req.query.server
     const username = req.query.username
-    console.log(username);
-    console.log("PREFLIGHT LOG:", process.env.region, req.query.server);
+    process.env.region = req.query.server;
     
     SDK.Player.findByName(username)
         .then(user => user.loadSeason('division.bro.official.2018-05'))

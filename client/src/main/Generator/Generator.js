@@ -22,7 +22,7 @@ class Generator extends Component{
     constructor(){
         super();
         this.state = {
-            server: "pc-na",
+            server: "",
             team: "solo",
             perspective: "",
             userData: "",
@@ -104,7 +104,7 @@ class Generator extends Component{
                       value={this.state.server} 
                       style={styles.customWidth}
                       labelStyle={menuStyles}
-                      onChange = {(event, index, value) => this.setState({map: value})} >
+                      onChange = {(event, index, value) => this.setState({server: value})} >
                         <MenuItem value="pc-na" primaryText="North America" />
                         <MenuItem value="pc-eu" primaryText="Europe" />
                         <MenuItem value="pc-as" primaryText="Asia" />

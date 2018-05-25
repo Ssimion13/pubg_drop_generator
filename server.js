@@ -25,5 +25,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-    console.log('Listening in port ' + port)
+    console.log('Trying this port: '+ port)
   });

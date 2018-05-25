@@ -22,7 +22,7 @@ class Generator extends Component{
     constructor(){
         super();
         this.state = {
-            server: "",
+            server: "pc-na",
             team: "solo",
             perspective: "",
             userData: "",

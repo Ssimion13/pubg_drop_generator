@@ -16,11 +16,11 @@ function PlayerStatsContainer (props) {
             <br/>
             Daily Kills: {props.dailyKills}
             <br/>
-            Damage Dealt: {Math.round(props.damageDealt)}
+            Net Dmg: {Math.round(props.damageDealt)}
             <br/>
             Revives: {props.revives}
             <br/>
-            Most One Round Kills: {props.roundMostKills}
+            Top Kill/Round: {props.roundMostKills}
             <br/>
             Wins {props.wins}
             <br/>

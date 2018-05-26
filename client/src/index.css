@@ -132,6 +132,7 @@ a:visited {
 }
 .comparisonKeyValueDiv {
   width: 50%;
+  margin-bottom: 8px;
   text-transform: capitalize;
   text-align: center;
 }
@@ -197,6 +198,7 @@ a:visited {
 .centeredTitle {
   text-align: center;
   margin-bottom: -10px;
+  margin-top: 3px;
 }
 
 .mainDropGeneratorDiv{
@@ -253,8 +255,15 @@ a:visited {
 @media(max-width: 400px){
   .map{
     height: 350px;
+    padding-right: 8px;
   }
   .firstUsername {
     margin-right: 0px;
+  }
+}
+
+@media(max-width: 370px){
+  .map {
+    padding-right: 0px;
   }
 }

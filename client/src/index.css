@@ -4,7 +4,7 @@
 }
 
 html {
-  background-color: whitesmoke;
+  background-color: #1a1a1a;
 }
 
 a {
@@ -41,6 +41,7 @@ a:visited {
   justify-content: center;
   background-color: white;
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 .generatorInputMainDiv {
   margin-top: 10px;

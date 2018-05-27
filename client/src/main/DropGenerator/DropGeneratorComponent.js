@@ -49,7 +49,7 @@ class DropGeneratorComponent extends Component {
     return (
       <div className="dropGeneratorComponentDiv">
         <RaisedButton
-                label='Go!'
+                label='Drop!'
                 onClick={this.startButton}
                 className='startButton'
                 primary={true} style={style} 

@@ -15,7 +15,8 @@ const styles = {
 };
 
 const menuStyles = {
-    backgroundColor: "white"
+    backgroundColor: "whitesmoke",
+    borderRadius: "10px"
 }
 
 class Generator extends Component{

@@ -5,7 +5,11 @@ import MenuItem from 'material-ui/MenuItem';
 import DropGeneratorComponent from "./DropGeneratorComponent";
 import DropGeneratorHowToUse from "./DropGeneratorHowToUse";
 
-
+const menuStyles = {
+    backgroundColor: "whitesmoke",
+    borderRadius: "5px",
+    marginTop: "5px"
+}
 
 
 
@@ -135,6 +139,7 @@ class DropGenerator extends Component{
             <div className="mainDropGeneratorDiv">
                 <DropDownMenu 
                     value={this.state.map} 
+                    style={menuStyles}
                     onChange = {(event, index, value) => this.setState({map: value})} >
                     <MenuItem value="Erangel"  primaryText="Erangel" />
                     <MenuItem value="Miramar"  primaryText="Miramar" />

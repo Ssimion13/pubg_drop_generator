@@ -11,6 +11,8 @@ function Title (props) {
     width: '100%',
     height: '100%',
     display: 'flex',
+    marginTop: "10px",
+    borderRadius: "5px"
   }
   return (
     <div className='title'>

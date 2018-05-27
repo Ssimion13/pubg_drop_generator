@@ -35,12 +35,13 @@ const Logged = (props) => (
     <MenuItem >
         <Link to="/DropGenerator"> Random Drop Generator </Link>
     </MenuItem>
+    {/* <MenuItem >
+        <Link to="/GeneralDropTips"> General Drop Tips </Link>
+    </MenuItem>  */}
     <MenuItem>
         <Link to="/Generator"> Stats Comparison </Link>
     </MenuItem>
-    {/* <MenuItem >
-        <Link to="/About"> About </Link>
-    </MenuItem> */}
+
   </IconMenu>
 );
 

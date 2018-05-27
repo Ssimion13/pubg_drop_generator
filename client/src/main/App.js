@@ -4,6 +4,8 @@ import {Switch, Route} from 'react-router-dom'
 import FrontPage from './FrontPage.js'
 import Generator from './Generator/Generator.js'
 import DropGenerator from './DropGenerator/DropGenerator.js'
+import GeneralDropTips from "./GeneralDropTips/GeneralDropTips.js"
+
 
 class App extends Component {
   render() {
@@ -13,6 +15,7 @@ class App extends Component {
         <Switch>
           <Route path='/Generator' component={Generator} />
           <Route path='/DropGenerator' component={DropGenerator} />
+          <Route path='/GeneralDropTips' component={GeneralDropTips} />
           <Route path='/' component={FrontPage} />
         </Switch>
       </div>

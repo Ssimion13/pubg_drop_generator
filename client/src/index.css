@@ -4,7 +4,7 @@
 }
 
 html {
-  background-color: #1a1a1a;
+  background-color: whitesmoke;
 }
 
 a {
@@ -35,7 +35,7 @@ a:visited {
   align-items: center;
 }
 .mainGeneratorDropdownMenusDiv{
-  width: 100%;
+  width: 90%;
   height: 60px;
   display: flex;
   justify-content: space-around;
@@ -219,8 +219,15 @@ a:visited {
   justify-content: center;
 }
 
-
-
+.weaponLink {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.weaponImage {
+  object-fit: cover;
+}
 
 @media(max-width: 500px){
   .map{

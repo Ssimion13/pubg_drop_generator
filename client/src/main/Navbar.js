@@ -41,6 +41,9 @@ const Logged = (props) => (
     <MenuItem>
         <Link to="/Generator"> Stats Comparison </Link>
     </MenuItem>
+    <MenuItem>
+        <Link to="/Weapons"> Weapons </Link>
+    </MenuItem>
 
   </IconMenu>
 );

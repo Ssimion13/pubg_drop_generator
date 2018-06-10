@@ -1,14 +1,14 @@
 import React, {Component} from "react";
-import AKM from "../AKM.jpg"
-import M416 from "../M416.jpg"
-
+import AKMImage from "../AKM.jpg"
+import M416Image from "../M416.jpg"
+import { Link } from "react-router-dom"
 
 class Weapons extends Component{
     constructor(){
         super();
         this.state = {
             weapons: ["AKM", "M416"],
-            weaponImages: [AKM, M416]
+            weaponImages: [AKMImage, M416Image],
         }
     }
 
@@ -16,10 +16,13 @@ class Weapons extends Component{
     render(){
         const weaponsMap = this.state.weapons.map((weapon, i) => {
             return (
+                <Link to={`/${weapon}`}> 
                 <div className="weaponLink">
                     <img className="weaponImage" src={this.state.weaponImages[i]} />
-                    {weapon}
+                    
+                    
                 </div>
+                </Link>
             )
         })
         return(

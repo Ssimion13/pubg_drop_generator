@@ -249,6 +249,14 @@ a:visited {
   justify-content: space-around;
 }
 
+.weaponLinksDiv {
+  display: flex;
+  justify-content: space-around
+}
+.ballers {
+  width: 120px;
+}
+
 @media(max-width: 500px){
   .map{
     height: 400px;

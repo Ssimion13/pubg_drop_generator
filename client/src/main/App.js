@@ -6,8 +6,7 @@ import Generator from './Generator/Generator.js'
 import DropGenerator from './DropGenerator/DropGenerator.js'
 import GeneralDropTips from "./GeneralDropTips/GeneralDropTips.js"
 import Weapons from "./Weapons"
-import AKM from "./Weapons/AKM"
-import M416 from "./Weapons/M416"
+
 
 
 class App extends Component {
@@ -20,8 +19,6 @@ class App extends Component {
           <Route path='/DropGenerator' component={DropGenerator} />
           <Route path='/GeneralDropTips' component={GeneralDropTips} />
           <Route path='/Weapons' component={Weapons} />
-          <Route path='/AKM' component={AKM} />
-          <Route path='/M416' component={M416} />
           <Route path='/' component={FrontPage} />
         </Switch>
       </div>

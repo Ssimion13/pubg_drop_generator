@@ -1,11 +1,14 @@
 import React, {Component} from "react";
 import AKMImage from "../AKM.jpg"
 import M416Image from "../M416.jpg"
+import SCARLImage from "../SCARL.jpg"
 import { Link, Route, Switch } from "react-router-dom"
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import AKM from "./AKM"
 import M416 from "./M416"
+import SCARL from "./SCARL"
+
 
 const styles = {
     customWidth: {
@@ -24,8 +27,8 @@ class Weapons extends Component{
     constructor(){
         super();
         this.state = {
-            weapons: ["AKM", "M416"],
-            weaponImages: [AKMImage, M416Image],
+            weapons: ["AKM", "M416", "SCARL"],
+            weaponImages: [AKMImage, M416Image, SCARLImage],
             armor: 1,
             helmet: 1,
             hitbox: 1,
@@ -47,6 +50,15 @@ class Weapons extends Component{
         const M416Page = (props) => {
             return (
                 <M416 
+                    armor = {this.state.armor}
+                    helmet={this.state.helmet}
+                    hitbox={this.state.hitbox}
+                />
+            )
+        }
+        const SCARLPage = (props) => {
+            return (
+                <SCARL 
                     armor = {this.state.armor}
                     helmet={this.state.helmet}
                     hitbox={this.state.hitbox}
@@ -115,6 +127,7 @@ class Weapons extends Component{
                 <Switch>
                     <Route path='/Weapons/AKM' component={AKMPage} />
                     <Route path='/Weapons/M416' component={M416Page} />
+                    <Route path='/Weapons/SCARL' component={SCARLPage} />
                 </Switch>
 
             </div>

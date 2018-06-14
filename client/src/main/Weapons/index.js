@@ -20,10 +20,6 @@ const menuStyles = {
     borderRadius: "10px"
 }
 
-
-
-
-
 class Weapons extends Component{
     constructor(){
         super();

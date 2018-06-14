@@ -257,6 +257,13 @@ a:visited {
   width: 120px;
 }
 
+.weaponOverview {
+  margin-top: 15px;
+  background-color: whitesmoke;
+  text-indent: 5px;
+  padding-left: 5px;
+}
+
 @media(max-width: 500px){
   .map{
     height: 400px;
